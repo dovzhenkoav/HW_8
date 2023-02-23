@@ -1,5 +1,4 @@
 import random
-
 from utils import get_questions, Question
 
 

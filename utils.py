@@ -1,5 +1,4 @@
 import requests
-
 from settings import QUESTIONS_ENDPOINT
 
 
