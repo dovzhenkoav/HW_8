@@ -1,12 +1,20 @@
-from settings import QUESTIONS_ENDPOINT
 import requests
+
+from settings import QUESTIONS_ENDPOINT
 
 
 def get_questions() -> list[dict]:
     """Берём с  эндпоинта JSON и возвращаем его в формате python"""
-    responce = requests.get(QUESTIONS_ENDPOINT)
-    return responce.json()
+    response = requests.get(QUESTIONS_ENDPOINT)
+    return response.json()
 
 
 class Question:
-    pass
+    def __int__(self, text: str, difficulty: str, answer: str):
+        self.text: str = text
+        self.difficulty: int = int(difficulty)
+        self.answer: str = answer
+
+        self.question_asked: bool = False
+        self.user_answer: None = None
+        self.question_value: int = self.difficulty * 10
