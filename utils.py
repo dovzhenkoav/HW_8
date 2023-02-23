@@ -15,7 +15,7 @@ class Question:
         self.difficulty: int = int(difficulty)
         self.answer: str = answer
 
-        self.question_asked: bool = False
+        self.question_answered: bool = False
         self.user_answer: None = None
         self.question_value: int = self.difficulty * 10
 
@@ -32,21 +32,20 @@ class Question:
         self.user_answer = user_input
         return self.answer.lower() == self.user_answer.lower()
 
-    def build_question(self):
+    def build_question(self) -> str:
         """Возвращает вопрос в понятном пользователю виде, например:
         Вопрос: What do people often call American flag?
         Сложность 4/5
         """
-        self.question_asked = True
-        return f'Вопрос: {self.text}\nСложность {self.difficulty}/5'
+        return f'\nВопрос: {self.text}\nСложность: {self.difficulty}/5\n'
 
-    def build_feedback(self, user_input: str):
+    def build_feedback(self, user_input: str) -> str:
         """Возвращает :
         Ответ верный, получено __ баллов,
         Ответ неверный, верный ответ __
         """
         if self._is_correct(user_input):
-            # TODO: И куда мы блять складываем эти баллы?
+            self.question_answered = True
             return f"Ответ верный, получено {self.question_value} баллов"
         else:
             return f"Ответ неверный. Верный ответ – {self.answer}"
